@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "conversational-rag-api"
+version = "0.1.0"
+description = "Conversational RAG API with Redis-based memory & bookings"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.95.2"
+uvicorn = {extras=["standard"], version = "^0.22.0"}
+httpx = "^0.24.1"
+pydantic = "^1.10.11"
+redis = "^4.5.5"
+numpy = "^1.26.4"
+python-dotenv = "^1.0.0"
+orjson = "^3.9.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.2"
