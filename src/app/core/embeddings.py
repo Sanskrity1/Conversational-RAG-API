@@ -2,16 +2,11 @@ from typing import List
 import os
 import numpy as np
 
-# This module provides a small wrapper for requesting embeddings.
-# By default, it calls OpenAI embeddings if OPENAI_API_KEY is set; otherwise,
-# it falls back to a deterministic embedding (hash -> vector) for local testing.
 
 def simple_hash_embedding(text: str, dim: int = 1536) -> List[float]:
-    # deterministic pseudo-embedding for offline tests
     import hashlib
     h = hashlib.sha256(text.encode("utf-8")).digest()
     arr = [b / 255.0 for b in h]
-    # tile to requested dim
     out = (arr * ((dim // len(arr)) + 1))[:dim]
     return out
 
@@ -21,8 +16,6 @@ class EmbeddingClient:
         self.api_key = os.environ.get("OPENAI_API_KEY")
 
     async def embed(self, texts: List[str]) -> List[List[float]]:
-        # If OPENAI_API_KEY present, you'd call OpenAI embedding endpoint here.
-        # For scaffolding we return simple_hash_embedding.
         out = [simple_hash_embedding(t) for t in texts]
         return out
 

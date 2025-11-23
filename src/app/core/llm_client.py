@@ -3,8 +3,6 @@ import os
 import asyncio
 from dataclasses import dataclass
 
-# NOTE: This module intentionally keeps the LLM interface abstract so you can
-# replace the implementation (OpenAI, Anthropic, local LLM) without changing other code.
 
 @dataclass
 class LLMClient:
@@ -44,9 +42,5 @@ class LLMClient:
         Replace with OpenAI/other SDK as required.
         Here we'll use a very small placeholder that echoes the prompt for safety.
         """
-        # Replace this block with real client code (openai.Completion or chat completion).
-        # Doing a synchronous blocking call is discouraged in async frameworks.
-        # Example (pseudocode): openai.chat.completions.create(...)
         await asyncio.sleep(0.1)
-        # Simple deterministic echo summarizer (for scaffolding)
         return f"[LLM generated answer based on prompt of {len(prompt)} chars]\n\n{prompt[:1000]}"

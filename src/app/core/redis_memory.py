@@ -4,7 +4,6 @@ import json
 import os
 import asyncio
 
-# Note: redis version in requirements is redis; aioredis is included in redis>=4
 import redis.asyncio as redis_async
 
 class RedisMemory:
@@ -30,7 +29,6 @@ class RedisMemory:
     async def get_messages(self, convo_key: str, limit: int = 10) -> List[Dict]:
         r = await self._get()
         raw = await r.lrange(convo_key, max(0, -limit), -1)
-        # r.lrange returns from start to end; we want latest messages
         res = []
         for j in raw:
             try:
